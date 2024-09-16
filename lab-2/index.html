@@ -15,7 +15,7 @@
         h1, h2 {
             text-decoration: underline;
         }
-        
+
     </style>
   </head>
   <body>
@@ -264,22 +264,29 @@
     <article>
         <h2>Addendum</h2>
         <p>
-            As I worked on converting the academic paper into HTML, I encountered several challenges in understanding how to structure the document. Below is a summary of the decisions I made, why I made them, and how I resolved issues I encountered along the way.
+            As I began converting the academic paper into HTML, I researched the appropriate HTML5 tags that would best reflect the structure of a formal document. My goal was to ensure that each section of the paper was marked up semantically, providing both clarity for the reader and accessibility for assistive technologies. Here’s an overview of my process and the choices I made for specific tags:
         </p>
         <p>
-            Using `article` and `section`: Initially, I wasn’t sure if I should use `div` or `article` to encapsulate the content of the paper. After learning that `article` is meant for self-contained content, I realized it was the best choice for this website. I used the first `article` to hold the main content of the paper and the second `article` for the addendum as both sections are independent but related pieces of content. 
+            Planning the Structure and Choosing `article` Tags: After researching how to structure documents in HTML, I learned that `article` is a semantic tag used for self-contained content. Given that the paper and the addendum were distinct sections, I decided to use two `article` tags: one for the main paper and another for the addendum. This clearly separates the content and makes the document easier to navigate. Each article encapsulates its own logical unit, with the first containing the body of the academic paper and the second the explanation of the HTML structure.
         </p>
         <p>
-            Handling the Title and Authors: At first, I used basic `p` tags for the title and author information, but later I discovered that HTML provides the `header` and `address` tags, which are more appropriate for this kind of content. The `header` tag wraps the title of the paper, and the `address` tag is used to hold the author names and contact information. This was a semantic improvement, making the structure clearer. Initially, I also forgot to separate the authors' names into distinct lines, which made it hard to read. I corrected this by placing each author in their own `p` tag under the `address`.
+            Using `header` and `address` for the Title and Author Information: Initially, I thought about simply using paragraphs for the title and author names. However, after further research, I discovered that the `header` tag is specifically designed to group introductory content such as the title, and the `address` tag is used to provide contact information. Therefore, I wrapped the title and author details within a `header` block, and each author’s contact information within an `address` block to improve semantic clarity. I found that using `address` was more meaningful than just plain `p` tags because it clearly indicates to both users and browsers that this section contains the author’s contact information.
         </p>
         <p>
-            Adding Tables: When I first added the table for the “Overview of Components Used,” I didn’t know how to format the borders. Initially, the table had no structure and was difficult to read. I later added `thead` and `tbody` tags to organize the table content and used CSS to add borders with border: 1px solid black; on the table cells (`th`, `td`). This improved readability significantly.
+            Structuring the Content with `section` Tags: I initially planned to use `div` tags to separate different parts of the paper, but through my research, I found that `section` tags are more appropriate for dividing a document into thematic areas. Each major part of the paper (e.g., Abstract, Introduction, Methodology) was thus enclosed in its own `section`, with headings (`h2`) marking the beginning of each section. This choice provided better semantic structure and allows screen readers and search engines to understand the organization of the document more effectively.
         </p>
         <p>
-            Citations and References: I struggled with how to represent citations within the text. Initially, I used plain text like [1], but then I realized I could use anchor tags (`a`) to link citations in the text directly to the references at the end of the paper. I used id attributes in the reference list and created links with href="#refX". This improved the interactivity and made it easier to navigate the document.
+            Creating Hierarchical Headings: I used an `h1` tag for the title of the paper and `h2` tags for major sections like “Introduction” and “Conclusion.” For subsections, such as “System Overview and Test Setup,” I used `h3` tags to maintain a clear structure.
+            This made the document easier to navigate, as the headings clearly outlined the flow of the paper.
         </p>
         <p>
-            Problems with Styling: At first, I tried using inline styles to format various elements like headings and tables. This quickly became messy and hard to manage. I later moved to using a `style` tag in the `head` section to consolidate the styling, which made the HTML file much cleaner and easier to maintain. I also realized that using margin-left in the body style made the text more readable by keeping it aligned consistently across the page.
+            Tables for Data Representation: When I first tried to present the component details, I used `p` tags, which didn’t provide proper structure for tabular data. After researching how to represent tabular information, I switched to using a `table` tag with `thead` for the table header and `tbody` for the body content. This allowed me to structure the data meaningfully, and the use of CSS for borders improved readability. I also added a `caption` tag to describe the table, improving accessibility for screen readers.
+        </p>
+        <p>
+            Inserting Citations with Links: At first, I just wrote out citations like [1] in plain text, but I realized this wasn’t very interactive or informative. I researched how to link citations, and I learned to use the `a` tag to link each citation in the text to the corresponding reference at the bottom of the document. I assigned id attributes to each reference, allowing me to create internal links from the citations in the paper body to the reference list. This greatly improved navigation and made the document more interactive.
+        </p>
+        <p>
+            Styling Challenges: I initially struggled with styling the content inline, which made the HTML cluttered and hard to manage. After researching best practices, I created a `style` block in the `head` section to centralize the CSS. This made it easier to manage and edit styles, especially for the table and headings. I used border-collapse: collapse; to ensure the table cells shared borders and added some padding for better readability. This separation of style and content made the HTML cleaner and easier to update.
         </p>
     </article>
 
