@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drone Motor Modeling Using Machine Learning</title>
+    <style>
+        body {
+            width: 85%;
+            margin-left: 5em;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+        h1, h2 {
+            text-decoration: underline;
+        }
+    </style>
+  </head>
+  <body>
+    <article>
+        <header>
+            <h1>DRONE MOTOR MODELING USING MACHINE LEARNING </h1>
+            <address>
+                <p><strong>Authors:</strong></p>
+                <p>Dheeraj Tangella</p>
+                <p>Dept. of Electronics and Communication Engineering, Indian Institute of Information Technology, Design and Manufacturing, Kancheepuram, Chennai 600127, India</p>
+                <p>Email: <a href="mailto:edm20d003@iiitdm.ac.in">edm20d003@iiitdm.ac.in</a></p>
+
+                <p>Dr. Selvajyothi K</p>
+                <p>Dept. of Electronics and Communication Engineering, Indian Institute of Information Technology, Design and Manufacturing, Kancheepuram, Chennai 600127, India</p>
+                <p>Email: <a href="mailto:ksjyothi@iiitdm.ac.in">ksjyothi@iiitdm.ac.in</a></p>
+            </address>
+        </header>
+
+        <section>
+            <h2>1. Abstract</h2>
+            <p><strong>Unmanned aerial vehicles (UAVs) rely significantly
+                on their propulsion systems, with the motor and propeller being
+                vital parts in determining drone performance. This project delves
+                into improving UAV performance and reliability by utilizing
+                machine learning approach. which is intend to optimize drone
+                motor performance by doing an in-depth analysis using regres-
+                sion models. This method uses input variable throttle signal to
+                estimate rotational speed and using rotational speed, voltage and
+                current as input to estimate thrust and torque of multirotor
+                systems, eliminating the need for extra thrust and torque sensors.
+                Furthermore, we provide a strong model capable of reliably
+                forecasting Motor Electrical Speed (RPM), Thrust and Torque
+                from unseen data, Motor Electrical speed predictions had a
+                prediction accuracy of > 97% speed with an error < 2.5% of
+                the data set range for 80% of the dataset and Thrust predictions
+                had a prediction accuracy > 87% thrust with an error < 6% of
+                the data set range for 80% of the dataset while Torque predictions
+                had a prediction accuracy > 99% torque with an error < 1.2%
+                of the data set range for 80% of the dataset . Each dataset is
+                rigorously reviewed to reveal significant information and insights
+                of motor properties. The dataset used in this work was obtained
+                from RCtestBench 1580, which provided valuable information on
+                motor characteristics, electrical signals, and mechanical outputs.</strong></p>
+        </section>
+
+        <section>
+            <h2>2. Introduction</h2>
+            <p>Propeller thrust and torque are the principal forces and
+                moments that are applied to the motor shaft at hover or low
+                speeds, and which can be easily measured on a test bench that
+                is stationary. It is easy to turn on and off the motor’s three
+                stages in order to check its rotational speed and challenging
+                to compute the three forces and moments acting on the motor
+                shaft during forward flight, though, without the aid of extra
+                sensors. Study <a href="#ref1">[1]</a> modeled these forces and moments. <a href="#ref2">[2]</a>
+                Designing and implementing A quadcopter’s attitude control
+                algorithm must be developed through a protracted process
+                that involves simulation and in-flight testing. Due to potential
+                design flaws like unmodeled dynamics, most control systems
+                necessitate an experimental phase on the physical system
+                for validation. This is because unexpected performance can
+                arise. <a href="#ref3">[3]</a> and <a href="#ref4">[4]</a> Because of this, test platforms that evaluate
+                controller performance in a setting that is risk-free for both
+                the user and the vehicle are required to enable the shift
+                between numerical and experimental analysis. <a href="#ref5">[5]</a> Bart and Joris presented how to use the recorded rotational speed,
+                throttle setting, and input voltage to sense the propeller torque
+                and current of a multirotor without the need for extra torque
+                sensors. Their model achieved &lt;0.01 Nm error or 4.6% of the
+                data set range for 90% of the data set and &lt;0.5A error for 90%
+                of cases <a href="#ref6">[6]</a> The value of thrust stand data is demonstrated
+                in this study, which uses an RC Benchmark thrust stand to
+                investigate the influence of a leading-edge comb adjustment
+                on propeller noise and thrust <a href="#ref7">[7]</a> The study explores towards
+                using machine learning, primarily neural networks, to control
+                drones rather than standard pre-programmed models. It uses
+                methods such as non-linear regression and neural networks to
+                learn the drone’s behavior and anticipate its future motions
+                <a href="#ref8">[8]</a> This research investigates three machine learning-based
+                obstacle detection models for drones: a classical BP neural
+                network, a classical GA-BP network, and an upgraded
+                GA-BP network. All models were evaluated on a dataset of
+                150 training samples. Results include convergence curves
+                <a href="#ref1">[9]</a> On a thrust stand, experiments are conducted to validate
+                the process. According to the findings, there is a peak in
+                the thrust-to-power ratio, or overall rotor efficiency, which
+                can be raised by 2% to 5% by altering the bottom rotor’s pitch</p>
+        </section>
+
+        <section>
+            <h2>3. Methodology</h2>
+            <h3><em>System Overview and Test Setup</em></h3>
+            <p><strong><em>RCTestBench 1580</em></strong> is a cutting-edge platform for testing the
+                performance and dependability of remote controlled devices.
+                This tool aims to drastically reduce the time required for
+                characterising, testing, and building brushless motor propul-
+                sion systems. Table I, Fig. 1 and Fig. 2 show the test setup
+                overview. Once attaching all the mounted parts. Prior to
+                the propulsion system being fitted, the digital thrust stand
+                was calibrated using an internal calibration scheme and a
+                calibration weight. Next, the battery, ESC, motor, and propeller
+                were mounted on the digital thrust stand. The test stand uses
+                robust software for automated control and data logging, and it
+                connects to your computer via USB. The Scripting Interface
+                can be used to write custom programmes that can be used to
+                manually operate the ESC. Additionally, safety cutoffs can be
+                implemented to prevent damage to the components.</p>
+
+                <table>
+                    <caption>Overview of Components Used</caption>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Collection Software</td>
+                            <td>RCbenchmark - GUI 1.2.1</td>
+                        </tr>
+                        <tr>
+                            <td>Hardware</td>
+                            <td>RCbenchmark Series 1580</td>
+                        </tr>
+                        <tr>
+                            <td>Motor</td>
+                            <td>A2212 10t 1400kv</td>
+                        </tr>
+                        <tr>
+                            <td>Propeller</td>
+                            <td>Robodo 1045R</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Feature Selection:</strong> Identifying and selecting relevant fea-
+                    tures from the dataset that will be used as inputs to the machine
+                    learning model. The selection process considers the signifi-
+                    cance of each feature in predicting the motor performance.
+                    Features that have correlation and importance will be retained,
+                    while irrelevant or redundant features may be excluded to
+                    simplify the model.
+                </p>
+                <p><strong>Model Selection:</strong> In this step, an appropriate machine
+                    learning model is chosen to predict the motor characteristics.
+                    After thorough exploration, various machine learning algo-
+                    rithms were considered, with a focus on regression models.
+                    This choice was informed by the observation that most of
+                    the features exhibit linear relationships and possess continuous
+                    values. Additionally, the selection process involved evaluating
+                    each model’s performance and suitability for accurately cap-
+                    turing the underlying patterns in the dataset
+                </p>
+        </section>
+
+        <section>
+            <h2>4. Model Implementation</h2>
+            <h3><em>i. Motor electrical speed model</em></h3>
+            <p><strong>Lasso Regression Model:</strong> Lasso regression, also known as
+                Least Absolute Shrinkage and Selection Operator (LASSO),
+                is a statistical technique used in machine learning to analyze
+                regression. It addresses two main goals: Regularization which
+                accomplishes this by using a regularization technique known
+                as L1 regularization and Feature Selection which automatically
+                identify and remove irrelevant features from the model. this
+                penalty in lasso reduces the coefficients towards zero, and in
+                rare situations, it can drive them to zero.
+            </p>
+            <h3><em>ii. Thrust model</em></h3>
+            <p><strong>Polynomial Regression Model:</strong> Polynomial regression is a
+                regression analysis technique that models relationships that are
+                not necessarily linear. It accomplishes this by fitting a poly-
+                nomial function to the dataset.which uses a complex equation
+                of degree for the predictions. Using a low degree polynomial
+                may not represent the complexity of the connection, resulting
+                in a poor fit and inaccurate predictions.Using a very high
+                degree polynomial may result in the model fitting the training
+                data excellently but failing to generalize effectively to new
+                data (overfitting). Since voltage and current have a strong
+                correlation, we solely utilise voltage as it is the primary factor
+                influencing thrust and helps to eliminate multicollinearity.</p>
+        </section>
+
+        <section>
+            <h2>5. Conclusion</h2>
+            <p>In conclusion, This thorough testing and measurement pro-
+                vided crucial insights into the nonlinear dynamics of bldc mo-
+                tors, including metrics such as thrust, torque and Motor speed
+                across a wide range of operational situations. By employing
+                the regression models to analyze readily available input data,
+                we have successfully eliminated the need for additional thrust
+                and torque sensors. this model achieved Accurate and reliable
+                predictions, unveiling hidden insights, Sensor less operation
+                These findings strongly support the use of ML as an effective
+                tool for drone motor modeling and to accurately forecast motor
+                speed from throttle ESC input and thrust,torque from mo-
+                tor speed,voltage and current input thereby improving motor
+                control mechanisms for maximum stability, flight endurance,
+                and energy efficiency. the integration of machine learning
+                techniques not only enhances the accuracy and reliability of
+                motor predictions but also heralds a new era of innovation and
+                efficiency in drone technology</p>
+        </section>
+
+        <section>
+            <h2>6. References</h2>
+            <ol>
+                <li id='ref1'>W. Khan and M. Nahon, “A propeller model for general forward flight conditions,” International Journal of Intelligent Unmanned Systems, vol. 3, Nov. 2015.</li>
+                <li id='ref2'>Y. Yu and X. Ding, “A quadrotor test bench for six degree of freedom
+                    flight,” Journal of Intelligent Robotic Systems, vol. 3, 2012/12/01 2012.
+                </li>
+                <li id='ref3'>N. Vitzilaios and N. Tsourveloudis, “An experimental test bed for small
+                    unmanned helicopters,” Journal of Intelligent and Robotic Systems, vol.
+                    54, pp. 769–794, 05 2009
+                </li>
+                <li id='ref4'>U. Veyna, S. Garcia-Nieto, R. Simarro, and J. V. Salcedo, “Quad-
+                    copters testing platform for educational environments,” Sensors, vol.
+                    21, no. 12, 2021. [Online]. Available: https://www.mdpi.com/1424-
+                    8220/21/12/4134
+                </li>
+                <li id='ref5'>B. Theys and J. De Schutter, “Virtual motor torque sensing for multirotor
+                    propul- sion systems,” IEEE Robotics and Automation Letters, vol. PP,
+                    pp. 1–1, 03 2021.
+                </li>
+                <li id='ref6'>M. Callender, “Uas propeller/rotor sound pressure level reduction
+                    through leading edge modification,” Journal of Applied Mechanical
+                    Engineering, vol. 06, 01 2017.
+                </li>
+                <li id='ref7'>Y. Mandloi and Y. Inada, Machine Learning Approach for Drone
+                    Perception and Control, 05 2019, pp. 424–431.
+                </li>
+                <li id='ref8'>L. Zhou, A. Pljonkin, and P. K. Singh, “Modeling and pid control
+                    of quadrotor uav based on machine learning,” Journal of Intelligent
+                    Systems, vol. 31, no. 1, pp. 1112–1122, 2022. [Online]. Available:
+                    https://doi.org/10.1515/jisys-2021-0213
+                </li>
+                <li id='ref9'>K. E. T. Giljarhus, A. Porcarelli, and J. Apeland, “Investigation of rotor
+                    efficiency with varying rotor pitch angle for a coaxial drone,” Drones,
+                    vol. 6, no. 4, 2022. [Online]. Available: https://www.mdpi.com/2504-
+                    446X/6/4/91
+                </li>
+            </ol>
+        </section>
+    </article>
+
+    <article>
+        <h2>Addendum</h2>
+        <p>
+            As I worked on converting the academic paper into HTML, I encountered several challenges in understanding how to structure the document. Below is a summary of the decisions I made, why I made them, and how I resolved issues I encountered along the way.
+        </p>
+        <p>
+            Using `article` and `section`: Initially, I wasn’t sure if I should use `div` or `article` to encapsulate the content of the paper. After learning that `article` is meant for self-contained content, I realized it was the best choice for this website. I used the first `article` to hold the main content of the paper and the second `article` for the addendum as both sections are independent but related pieces of content. 
+        </p>
+        <p>
+            Handling the Title and Authors: At first, I used basic `p` tags for the title and author information, but later I discovered that HTML provides the `header` and `address` tags, which are more appropriate for this kind of content. The `header` tag wraps the title of the paper, and the `address` tag is used to hold the author names and contact information. This was a semantic improvement, making the structure clearer. Initially, I also forgot to separate the authors' names into distinct lines, which made it hard to read. I corrected this by placing each author in their own `p` tag under the `address`.
+        </p>
+        <p>
+            Adding Tables: When I first added the table for the “Overview of Components Used,” I didn’t know how to format the borders. Initially, the table had no structure and was difficult to read. I later added `thead` and `tbody` tags to organize the table content and used CSS to add borders with border: 1px solid black; on the table cells (`th`, `td`). This improved readability significantly.
+        </p>
+        <p>
+            Citations and References: I struggled with how to represent citations within the text. Initially, I used plain text like [1], but then I realized I could use anchor tags (`a`) to link citations in the text directly to the references at the end of the paper. I used id attributes in the reference list and created links with href="#refX". This improved the interactivity and made it easier to navigate the document.
+        </p>
+        <p>
+            Problems with Styling: At first, I tried using inline styles to format various elements like headings and tables. This quickly became messy and hard to manage. I later moved to using a `style` tag in the `head` section to consolidate the styling, which made the HTML file much cleaner and easier to maintain. I also realized that using margin-left in the body style made the text more readable by keeping it aligned consistently across the page.
+        </p>
+    </article>
+
+    <footer>
+        <p>Last updated: 
+            <span id="lastModified"></span>
+        </p>
+    </footer>
+    <script type="text/javascript">
+         var x = document.lastModified;
+         document.getElementById('lastModified').textContent = x;
+    </script>
+  </body>
+</html>
