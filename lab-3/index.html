@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serving Fonts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Eater&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Lab 3: Serving Fonts</h1>
+    <p id="eater-font">
+      For this page, I decided to use the "Eater" font from Google Fonts, which
+      looks a bit quirky and uncommon for adding uniqueness to the
+      test. By adding a link to Google Fonts in the HTML header, the browser
+      fetches the font from Google's servers and uses it to style the text on
+      this page. This method ensures that the font is delivered to the browser,
+      even if the font is not already installed in a particular system.
+      Additionally, I have applied styling to the body to properly present the
+      'Eater' font
+    </p>
+
+    <p id="arial-font">
+      This is a paragraph styled with Arial font to display as a comparison, it
+      is a commonly used system font
+    </p>
+    <footer>
+      <p>
+        Last updated:
+        <span id="lastModified"></span>
+      </p>
+    </footer>
+    <script type="text/javascript">
+      var x = document.lastModified;
+      document.getElementById("lastModified").textContent = x;
+    </script>
+  </body>
+</html>
