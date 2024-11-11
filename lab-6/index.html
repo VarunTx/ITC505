@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting and Display</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- Header Section -->
+        <header>
+            <h1>Selection Sort in Holy Grail Layout</h1>
+        </header>
+
+        <!-- Sidebar Section -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content Section -->
+        <main>
+            <h2>Sorting Arrays</h2>
+            
+            <!-- Ascending Order Section -->
+            <div id="ascending">
+                <h3>Ascending Order</h3>
+                <button onclick="sortArrayAscending()">Sort Ascending</button>
+                <p id="ascResult"></p>
+            </div>
+
+            <!-- Descending Order Section -->
+            <div id="descending">
+                <h3>Descending Order</h3>
+                <button onclick="sortArrayDescending()">Sort Descending</button>
+                <p id="descResult"></p>
+            </div>
+        </main>
+
+        <!-- Advertisement Section -->
+        <aside class="advertisement">
+            <a href="https://www.amazon.com/LEGO-Building-Engineering-Collectible-Construction/dp/B0BBWG5T23/?_encoding=UTF8&pd_rd_w=tMwPi&content-id=amzn1.sym.aeef70de-9e3e-4007-ae27-5dbb7b4a72f6&pf_rd_p=aeef70de-9e3e-4007-ae27-5dbb7b4a72f6&pf_rd_r=FSVC603624QG2E68F5QN&pd_rd_wg=Q7n20&pd_rd_r=32fb1808-811b-4d97-a244-025e8cac8352&ref_=pd_hp_d_btf_crs_zg_bs_165793011">
+                <img src="https://m.media-amazon.com/images/I/91dSzQ6S1UL._AC_SY200_.jpg" alt="LEGO Building Set" style="width:100%; height:auto; object-fit:cover;">
+            </a>
+        </aside>
+
+        <!-- Footer Section -->
+        <footer>
+    <p>Last updated: 
+        <span id="lastModified"></span>
+    </p>
+    <p>Addendum: 
+        The main task in this assignment was to create a Holy Grail layout using CSS Grid and integrate interactive JavaScript. One issue I faced was ensuring that the content in the sidebar didn’t get pushed out of view when the main content area expanded. I had to tweak the `grid-template-columns` property to ensure that the sidebar maintained a fixed width while the content area could expand and contract as needed.
+
+        Another challenge occurred when the advertisement image was not aligning properly within its grid cell. I fixed this by using `object-fit: cover` to ensure the image filled the space without distorting, while still maintaining its aspect ratio.
+
+        I also ran into problems with the footer not staying at the bottom of the page when the content was minimal. I resolved this by applying `position: absolute` to the footer and setting `bottom: 0`, which ensured that the footer always stayed at the bottom of the page, regardless of the content length.
+
+        Lastly, while trying to implement the JavaScript functionality, I encountered an issue where the result of the sorting didn’t display immediately after clicking the button. The issue was caused by the incorrect placement of the JavaScript function calls. I solved it by ensuring that the button's `onclick` attribute correctly linked to the functions defined in the `scripts.js` file, and made sure the results were dynamically updated within the right section.
+  
+        When I pressed the "Sort" button, the layout did not properly adjust. The main content section would expand, pushing the sidebar or other elements out of place. To resolve this, I added `gap: 20px` to the `.layout` to create spacing between the grid items.
+    </p>
+    <script type="text/javascript">
+         var x = document.lastModified;
+         document.getElementById('lastModified').textContent = x;
+    </script>
+</footer>
+
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
