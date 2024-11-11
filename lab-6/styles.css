@@ -1,0 +1,102 @@
+/* General styles for body and layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #6e7bff, #ff6ec7); /* A diagonal gradient */
+    color: #fff;
+}
+
+/* Layout container using CSS Grid */
+.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px; /* Sidebar, Main content, Advertisement */
+    grid-template-rows: auto 1fr auto; /* Header, Content area, Footer */
+    grid-template-areas:
+        "header header header"
+        "sidebar main advertisement"
+        "footer footer footer";
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+    gap: 20px; /* Adds space between grid items */
+}
+
+/* Header */
+header {
+    grid-area: header;
+    background-color: rgba(255, 255, 255, 0.2); /* Light transparent background */
+    text-align: center;
+    padding: 20px;
+}
+
+/* Sidebar (Menu) */
+.sidebar {
+    grid-area: sidebar;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the layout */
+}
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+.sidebar ul li {
+    padding: 8px 0;
+}
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Advertisement (Aside) */
+.advertisement {
+    grid-area: advertisement;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+}
+.advertisement img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Main Content Area */
+main {
+    grid-area: main;
+    background-color: rgba(255, 255, 255, 0.2); /* Light transparent background */
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box; /* Ensures padding doesn't affect layout */
+    overflow-y: auto; /* Allows for scrolling if content overflows */
+}
+
+/* Footer */
+footer {
+    grid-area: footer;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    padding: 20px;
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the sum and average display */
+p span {
+    font-weight: bold;
+    color: #f5f5f5;
+}
