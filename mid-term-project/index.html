@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Mission Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Space Mission Adventure</h1>
+        <p id="story-text"></p>
+        <div id="ending-image"></div>
+        <div id="choices"></div>
+        <button id="restart-btn" style="display: none;" onclick="restartGame()">Restart Game</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="addendum.html">Addendum</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- Other HTML content -->
+
+<footer>
+    <p>Last updated: 
+        <span id="lastModified"></span>
+    </p>
+</footer>
+<script type="text/javascript">
+    var x = document.lastModified;
+    document.getElementById('lastModified').textContent = x;
+</script>
+
+</body>
+
+</body>
+</html>
