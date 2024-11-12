@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addendum - Space Mission Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Addendum</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="addendum.html">Addendum</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Creative Process and Challenges</h2>
+            <p>
+                One of the initial issues I faced was managing the game state as the user progressed through the stages. Initially, I had a hard time storing and updating the current stage after each choice. This led to an incorrect flow where users would be sent to the wrong stages or encounter undefined stages. I resolved this by storing the current stage in a variable and updating it with each user choice, ensuring the game logic followed the correct flow.
+            </p>
+            <p>
+                A major challenge occurred when I tried to dynamically update the content based on user choices. At first, the page would reload each time a choice was made, which disrupted the user experience. I used JavaScript’s DOM manipulation methods like `innerHTML` and `textContent` to update the story text and choices without reloading the page, making the game more interactive and fluid.
+            </p>
+            <p>
+                Another issue I encountered was displaying images. Some images from external sources weren’t loading due to slow network speeds or broken links, which caused layout breaks. To handle this, I implemented fallback images using the `onerror` event listener in JavaScript. This ensured that the game always displayed a relevant image, even if the primary image failed to load, maintaining a consistent experience.
+            </p>
+            <p>
+                I also ran into issues with the `choices` section not updating properly. When a user made a choice, the buttons wouldn’t refresh or would display the wrong options, leading to confusion. The problem stemmed from the way I was appending the buttons to the DOM. I fixed this by clearing the `choices` container (`innerHTML = ''`) before adding new buttons for each stage, ensuring that the correct choices were always displayed.
+            </p>
+            <p>
+                Lastly, managing the increasing complexity of the JavaScript code became a problem. As the number of stages and choices grew, the code became harder to follow. I resolved this by breaking the JavaScript into smaller functions, such as a `createChoiceButtons` function that handles the creation of choice buttons dynamically. This made the code more modular and easier to maintain.
+            </p>
+            <p>
+                These challenges gave me valuable insight into the importance of keeping the code organized, especially when building dynamic, interactive content. It also taught me the importance of error handling and optimizing user experience by ensuring that all resources (like images) are loaded properly and fallback mechanisms are in place.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Last updated: 
+            <span id="lastModified"></span>
+        </p>
+    </footer>
+
+    <script type="text/javascript">
+         var x = document.lastModified;
+         document.getElementById('lastModified').textContent = x;
+    </script>
+
+</body>
+</html>
