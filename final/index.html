@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights Out</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lights Out</h1>
+    <div id="game-board"></div>
+
+    <section id="addendum">
+        <h2>For Addendum</h2>
+        <ul>
+            <li>Ensuring the board starts in a solvable state was challenging. Randomly toggling lights using simulated clicks helped address this.</li>
+            <li>Handling edge and corner cells required careful neighbor-toggling logic to avoid errors.</li>
+            <li>Integrating smooth transitions for visual feedback took time but enhanced user experience.</li>
+            <li>Testing and debugging edge cases (e.g., solving with few moves) revealed flaws in the initial implementation, which were corrected.</li>
+            <li>Gaining insights on how toggling affects game solvability gave a deeper understanding of algorithmic design.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Last updated: 
+            <span id="lastModified"></span>
+        </p>
+    </footer>
+    <script>
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
